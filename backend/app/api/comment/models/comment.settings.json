@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "comments",
   "info": {
-    "name": "comment"
+    "name": "comment",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -11,8 +12,12 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "test": {
-      "type": "richtext"
+    "to_do": {
+      "model": "to-do"
+    },
+    "users_permissions_user": {
+      "plugin": "users-permissions",
+      "model": "user"
     }
   }
 }
