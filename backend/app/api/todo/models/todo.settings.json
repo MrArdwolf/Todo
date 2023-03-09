@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "todos",
   "info": {
-    "name": "Todo"
+    "name": "Todo",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -13,6 +14,10 @@
   "attributes": {
     "item": {
       "type": "text"
+    },
+    "Checked": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
