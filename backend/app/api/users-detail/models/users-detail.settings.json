@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "users_details",
+  "info": {
+    "name": "Users _detail"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "fullname": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "password": {
+      "type": "password"
+    },
+    "todos": {
+      "collection": "todo"
+    }
+  }
+}
