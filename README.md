@@ -1,4 +1,4 @@
-# installations instruktioner
+# Installations Instruktioner Frontend
 ## installera next.js och react
 1. För att installer next.js och react så ska man starta en terminal i project mappen ock köra:
     ```
@@ -10,7 +10,7 @@
 - `src/` directory = No
 - experimental `app/` directory = No
 
-## installera tailwind css
+## Installera Tailwind CSS
 1. För att installer Tailwind CSS så ska man köra:
     ```
     yarn add -D tailwindcss postcss autoprefixer
@@ -20,7 +20,7 @@
     ```js
       content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
     ```
-## byta ut filer
+## Byta Ut Filer
 1. öppna `pages/index.js` och ersätt allt med:
     ```js
     import { Inter } from '@next/font/google'
@@ -41,8 +41,12 @@
     @tailwind components;
     @tailwind utilities;
     ```
-## Starta hemsidan
+## Starta Hemsidan
 1. för att starta hemsidan kör:
     ```
     yarn dev
     ```
+
+# Installations Instruktioner Backend
+## Installera Stapi Och PostgreSQL
+1. 
