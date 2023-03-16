@@ -1,3 +1,16 @@
+# Backend
+## Installera Stapi Och PostgreSQL
+1. 
+
+## skapa en collection type
+1. starta strapi servern och logga in.
+2. klicka på `Content-Types Builder` och `Create new collection type`.
+3. under `Display name` skriv: `Todo` och klicka på `Continue`.
+4. klicka sedan på `Text`, döp den till: `item`, och klicka på `Add another field`.
+5. klicka sedan på `Boolean`, döp den till: `Checked`, klicka på `ADVANCED SETTNGS`, sätt `Default value` till: `FALSE`, klicka på `Finish` och klicka på Save.
+6. klicka på `Settings`, klicka på `Roles` under `USERS & PERMISSIONS PLUGIN`och klicka på `Public`.
+7. under `Permissions` och `APPLICATION` klicka i `delete`, `findone`, `crreate`, `find`, `update` och klicka på Save.
+
 # Frontend
 ## installera next.js och react
 1. För att installer next.js och react så ska man starta en terminal i project mappen ock köra:
@@ -51,7 +64,7 @@
 ```js
 import TodoItem from '@/components/TodoItem'
 import { useState, useRef, useEffect } from 'react'
-import React, { Component } from "react";
+import React from "react";
 
 
 export default function Home() {
@@ -62,11 +75,12 @@ export default function Home() {
   const [newTodo, setNewTodo] = useState("");
 
 
-
+  //useEffect körs om man laddar om sidan och i detta fall så kör useEffect funktionen update.
   useEffect(() => {
     update();
   }, []);
 
+  // update häntar alla todos från databasen och lägger dem i en array.
   const update = () => {
     fetch(`http://localhost:1337/todos`)
       .then(res => res.json())
@@ -79,6 +93,7 @@ export default function Home() {
       });
   }
 
+  // addObject körs när man klickar på enter eller ok knappen och den tar det man skrev och skapar en ny todo sedan kör den update för att man ska knna se den man nyss skapade.
   const addObject = () => {
     if (newTodo == "") {
       alert("Du skrev inget!")
@@ -95,7 +110,7 @@ export default function Home() {
         body: JSON.stringify(body)
       })
         .then(() => {
-          setNewTodo("");
+          resetInput()
           update();
         })
         .catch((e) => {
@@ -105,6 +120,7 @@ export default function Home() {
     }
   }
 
+  // removeObject körs när man klicka på ta bort knappen för var var och en todo. det påverkar bara den som man klickade på.
   const removeObject = (_item) => {
     let pos = _item.id;
 
@@ -113,7 +129,6 @@ export default function Home() {
       method: "DELETE"
     })
       .then(() => {
-        setNewTodo("");
         update();
       })
       .catch((e) => {
@@ -122,29 +137,19 @@ export default function Home() {
       });
   }
 
+  // resetInput körs när man klickar på ränsa knappen eller är man skapa en ny todo och den ränsar input fältet.
   const resetInput = () => {
     setNewTodo("")
   }
 
+  // RemoveAllObjects körs när man klickar på ta bort alla knappen och det kör en for loop på arrayn och säger till removeObject att ta bort alla.
   const removeAllObjects = () => {
     for (let i = 0; i < todos.length; i++) {
       let pos = todos[i].id;
-
-      fetch(`http://localhost:1337/todos/${pos}`, {
-        method: "DELETE"
-      })
-        .then(() => {
-          setNewTodo("");
-          update();
-        })
-        .catch((e) => {
-          console.error(`An error occurred: ${e}`)
-          alert("Ett fel uppstod!")
-        });
+      removeObject(todos[i]);
     }
   }
 
-// det som är i return är det som syns på hemsidan
   return (
     <>
       <main>
@@ -166,7 +171,7 @@ export default function Home() {
                   ref={inputText}
                   className="shadow appearance-none border rounded w-full py-2 px-3 mr-2 text-grey-darker"
                   placeholder="Att göra"
-                  />
+                />
                 <button id='ok_button' onClick={addObject} className="flex-none p-2 ml-2 mr-2 border-2 rounded text-teal-600 border-teal-600 hover:text-white hover:bg-teal-600">OK</button>
                 <button id='empty_button' onClick={resetInput} className="flex-none p-2 ml-2 border-2 rounded text-teal-600 border-teal-600 hover:text-white hover:bg-teal-600">ränsa</button>
               </div>
@@ -188,19 +193,6 @@ export default function Home() {
   )
 }
 
+
+
 ```
-
-# Backend
-## Installera Stapi Och PostgreSQL
-1. 
-
-## skapa en collection type
-1. starta strapi servern och logga in.
-2. klicka på `Content-Types Builder` och `Create new collection type`.
-3. under `Display name` skriv: `Todo` och klicka på `Continue`.
-4. klicka sedan på `Text`, döp den till: `item`, och klicka på `Add another field`.
-5. klicka sedan på `Boolean`, döp den till: `Checked`, klicka på `ADVANCED SETTNGS`, sätt `Default value` till: `FALSE`, klicka på `Finish` och klicka på Save.
-6. klicka på `Settings`, klicka på `Roles` under `USERS & PERMISSIONS PLUGIN`och klicka på `Public`.
-7. under `Permissions` och `APPLICATION` klicka i `delete`, `findone`, `crreate`, `find`, `update` och klicka på Save.
-
-##
