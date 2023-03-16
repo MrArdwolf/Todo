@@ -2,7 +2,7 @@
 ## Installera Stapi Och PostgreSQL
 1. 
 
-## skapa en collection type
+## skapa en collection type För Att Gara Lista
 1. starta strapi servern och logga in.
 2. klicka på `Content-Types Builder` och `Create new collection type`.
 3. under `Display name` skriv: `Todo` och klicka på `Continue`.
@@ -24,7 +24,7 @@
 - experimental `app/` directory = No
 
 ## Installera Tailwind CSS
-1. För att installer Tailwind CSS så ska man köra:
+1. För att installera Tailwind CSS så ska man köra:
     ```
     yarn add -D tailwindcss postcss autoprefixer
     npx tailwindcss init -p -full
@@ -59,7 +59,7 @@
     ```
     yarn dev
     ```
-## kod
+## Kod För Att Göra Lista
 ### `index.js`
 ```js
 import TodoItem from '@/components/TodoItem'
