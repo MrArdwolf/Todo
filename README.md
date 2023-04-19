@@ -2,7 +2,7 @@
 ## Installera Stapi Och PostgreSQL
 1. 
 
-## skapa en collection type För Att Gara Lista
+## skapa en collection type För Att Göra Lista
 1. starta strapi servern och logga in.
 2. klicka på `Content-Types Builder` och `Create new collection type`.
 3. under `Display name` skriv: `Todo` och klicka på `Continue`.
