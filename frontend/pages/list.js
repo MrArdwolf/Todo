@@ -1,6 +1,5 @@
 import TodoItem from '@/components/TodoItem'
-import { useState, useRef, useEffect } from 'react'
-import React from "react";
+import React, { useState, useRef, useEffect } from 'react'
 import Router from 'next/router'
 import Cookies from 'js-cookie';
 
@@ -111,8 +110,8 @@ export default function Home() {
   }
 
   const logOut = () => {
-    //Cookies.set('token', 'token');
-    Cookies.remove('token');
+    Cookies.set('token', '');
+    //Cookies.remove('token');
   }
 
   return (
@@ -145,7 +144,7 @@ export default function Home() {
             <div id='things' className='h-sc75 overflow-auto'>
               <ul id='list'>
                 {todos.map((todo) => {
-                  return <TodoItem todo={todo} removeObject={removeObject} />
+                  return <TodoItem key={todo.id} todo={todo} removeObject={removeObject} />
                 })}
               </ul>
               <div>
