@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory, useParams, useSearchParams } from "react-router-dom";
 import Router from 'next/router'
 import Cookies from 'js-cookie';
 
