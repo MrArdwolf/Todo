@@ -18,6 +18,11 @@
     "Checked": {
       "type": "boolean",
       "default": false
+    },
+    "owner": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "todos"
     }
   }
 }
