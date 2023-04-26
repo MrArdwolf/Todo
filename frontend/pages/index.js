@@ -3,6 +3,8 @@ import Router from 'next/router'
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
+const backendUrl = 'http://localhost:1337';
+
 export default function Login() {
 
     const [regUsername, setRegUsername] = useState('')
@@ -16,7 +18,7 @@ export default function Login() {
         let token;
         let userId = {};
         axios
-            .post('http://localhost:1337/auth/local/register', {
+            .post(`${backendUrl}/auth/local/register`, {
                 username: regUsername,
                 email: regEmail,
                 password: regPassword,
@@ -26,11 +28,19 @@ export default function Login() {
                 Cookies.set('token', token);
                 userId = response.data.user.id;
                 Cookies.set('userId', userId);
+                Cookies.set('username', response.data.user.username);
                 Router.push('/list');
             })
             .catch(error => {
-                console.error('An error occurred:', error.response);
-                alert("Ett fel uppstod!")
+                if (error.status !== 400) {
+                    console.error(`Couldn't login to Strapi. Status: ${error.response.status}`);
+                    alert("Email eller Användarnamn används till ett anat konto")
+                }
+                else{
+                    console.error('An error occurred:', error.response);
+                    alert("Ett fel uppstod!")
+
+                }
             });
     }
 
@@ -39,7 +49,7 @@ export default function Login() {
         let token;
         let userId = {};
         axios
-            .post('http://localhost:1337/auth/local', {
+            .post(`${backendUrl}/auth/local`, {
                 identifier: username,
                 password: password,
             })
@@ -48,11 +58,21 @@ export default function Login() {
                 Cookies.set('token', token);
                 userId = response.data.user.id;
                 Cookies.set('userId', userId);
+                Cookies.set('username', response.data.user.username);
                 Router.push('/list');
             })
             .catch(error => {
-                console.error('An error occurred:', error.response);
-                alert("Ett fel uppstod!")
+                
+
+                if (error.status !== 400) {
+                    console.error(`Couldn't login to Strapi. Status: ${error.response.status}`);
+                    alert("fel inloggningsuppgifter")
+                }
+                else{
+                    console.error('An error occurred:', error.response);
+                    alert("Ett fel uppstod!")
+
+                }
             });
     }
 
@@ -60,7 +80,7 @@ export default function Login() {
 
         Cookies.set('provider', props);
         axios
-            .get(`http://localhost:1337/connect/${props}`)
+            .get(`${backendUrl}/connect/${props}`)
             .then(response => {
                 console.log(response);
             })
@@ -78,7 +98,7 @@ export default function Login() {
                                 <input
                                     type="tex"
                                     className="shadow appearance-none border-2 rounded max-w-xl py-2 px-3 mr-2 mt-5 text-grey-darker"
-                                    placeholder="Användarnamn"
+                                    placeholder="Användarnamn/Email"
                                     onChange={e => setUsername(e.target.value)}
                                     value={username}
                                     onKeyDown={(e) => {
@@ -104,6 +124,7 @@ export default function Login() {
                                 />
                                 <br></br>
                                 <button id='login_button' onClick={() => handleLogin()} className="flex-none p-2 mr-7 border-2 rounded text-teal-600 border-teal-600 hover:text-white hover:bg-teal-600">Logga in</button>
+                                <button id='resetPassword' onClick={() => handleLogin()} className="flex-none p-2 mr-7 border-2 rounded text-teal-600 border-teal-600 hover:text-white hover:bg-teal-600">Glömt Lösenord?</button>
                             </div>
 
                             <div className=" float-right mt-4 mr-7">
@@ -161,5 +182,5 @@ export default function Login() {
             </main>
         </>
     )
-    
+
 }

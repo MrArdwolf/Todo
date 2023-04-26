@@ -3,12 +3,14 @@ import React, { useState, useRef, useEffect } from 'react'
 import Router from 'next/router'
 import Cookies from 'js-cookie';
 
+const backendUrl = 'http://localhost:1337';
 
 
 export default function Home() {
 
   const userId = Cookies.get('userId');
   const token = Cookies.get('token');
+  const username = Cookies.get('username');
 
   let [todos, setTodos] = useState([]);
 
@@ -26,7 +28,7 @@ export default function Home() {
 
     if (token != "") {
 
-      fetch(`http://localhost:1337/todos?owner.id=${userId}`, {
+      fetch(`${backendUrl}/todos?owner.id=${userId}`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -41,7 +43,7 @@ export default function Home() {
           alert("Ett fel uppstod!")
         });
     } else {
-      Router.push('/');
+     Router.push('/');
     }
 
 
@@ -57,7 +59,7 @@ export default function Home() {
           item: newTodo
         };
 
-        fetch(`http://localhost:1337/todos`, {
+        fetch(`${backendUrl}/todos`, {
           method: "POST",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -82,7 +84,7 @@ export default function Home() {
     let pos = _item.id;
 
 
-    fetch(`http://localhost:1337/todos/${pos}`, {
+    fetch(`${backendUrl}/todos/${pos}`, {
       method: "DELETE"
     })
       .then(() => {
@@ -111,6 +113,8 @@ export default function Home() {
 
   const logOut = () => {
     Cookies.set('token', '');
+    Cookies.set('userId', '');
+    Cookies.set('username', '');
     //Cookies.remove('token');
   }
 
@@ -121,6 +125,7 @@ export default function Home() {
           <div className="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-3xl">
             <div className="mb-4">
               <button id='logout_button' onClick={() => Router.push('/') + logOut()} className="flex-none float-right p-2 ml-2 mr-2 border-2 rounded text-teal-600 border-teal-600 hover:text-white hover:bg-teal-600">Logga Ut</button>
+              <h1 className="flex-none float-right p-2 ml-2 mr-2">Hej {username}!</h1>
               <h1 className="p-2 text-grey-darkest">Att Göra Lista</h1>
               <div className="flex mt-4">
                 <input
