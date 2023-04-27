@@ -2,6 +2,7 @@ import TodoItem from '@/components/TodoItem'
 import React, { useState, useRef, useEffect } from 'react'
 import Router from 'next/router'
 import Cookies from 'js-cookie';
+import { array } from 'prop-types';
 
 const backendUrl = 'http://localhost:1337';
 
@@ -25,10 +26,14 @@ export default function Home() {
 
   // update häntar alla todos från databasen och lägger dem i en array.
   const update = () => {
+    console.log(userId)
 
     if (token != "") {
+      const uri = `${backendUrl}/api/todos?filters[owner][id][$eq]=${userId}`;
+      const encoded = encodeURI(uri);
+      console.log(encoded)
 
-      fetch(`${backendUrl}/todos?owner.id=${userId}`, {
+      fetch(encoded, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -36,7 +41,8 @@ export default function Home() {
       })
         .then(res => res.json())
         .then(allTodo => {
-          setTodos(allTodo);
+          console.log(allTodo.data)
+          setTodos(allTodo.data);
         })
         .catch((e) => {
           console.error(`An error occurred: ${e}`)
@@ -55,11 +61,15 @@ export default function Home() {
       if (newTodo == "") {
         alert("Du skrev inget!")
       } else {
+        let item = newTodo;
         let body = {
-          item: newTodo
+          data: {
+            item,
+            owner: userId
+          }
         };
 
-        fetch(`${backendUrl}/todos`, {
+        fetch(`${backendUrl}/api/todos`, {
           method: "POST",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -84,7 +94,7 @@ export default function Home() {
     let pos = _item.id;
 
 
-    fetch(`${backendUrl}/todos/${pos}`, {
+    fetch(`${backendUrl}/api/todos/${pos}`, {
       method: "DELETE"
     })
       .then(() => {
@@ -148,9 +158,11 @@ export default function Home() {
             </div>
             <div id='things' className='h-sc75 overflow-auto'>
               <ul id='list'>
-                {todos.map((todo) => {
+                {Array.isArray(todos)
+                  ? todos.map((todo) => {
                   return <TodoItem key={todo.id} todo={todo} removeObject={removeObject} />
-                })}
+                })
+              : null}
               </ul>
               <div>
                 <button id='remove_all_button' onClick={removeAllObjects} className='flex p-3 mt-5 mr-auto ml-auto border-2 rounded text-red-600 border-red-600 hover:text-white hover:bg-red-600'>Ta Bort Alla</button>

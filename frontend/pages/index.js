@@ -18,7 +18,7 @@ export default function Login() {
         let token;
         let userId = {};
         axios
-            .post(`${backendUrl}/auth/local/register`, {
+            .post(`${backendUrl}/api/auth/local/register`, {
                 username: regUsername,
                 email: regEmail,
                 password: regPassword,
@@ -49,7 +49,7 @@ export default function Login() {
         let token;
         let userId = {};
         axios
-            .post(`${backendUrl}/auth/local`, {
+            .post(`${backendUrl}/api/auth/local`, {
                 identifier: username,
                 password: password,
             })
@@ -80,7 +80,7 @@ export default function Login() {
 
         Cookies.set('provider', props);
         axios
-            .get(`${backendUrl}/connect/${props}`)
+            .get(`${backendUrl}/api/connect/${props}`)
             .then(response => {
                 console.log(response);
             })
@@ -124,7 +124,7 @@ export default function Login() {
                                 />
                                 <br></br>
                                 <button id='login_button' onClick={() => handleLogin()} className="flex-none p-2 mr-7 border-2 rounded text-teal-600 border-teal-600 hover:text-white hover:bg-teal-600">Logga in</button>
-                                <button id='resetPassword' onClick={() => handleLogin()} className="flex-none p-2 mr-7 border-2 rounded text-teal-600 border-teal-600 hover:text-white hover:bg-teal-600">Glömt Lösenord?</button>
+                                {/* <button id='resetPassword' onClick={() => handleLogin()} className="flex-none p-2 mr-7 border-2 rounded text-teal-600 border-teal-600 hover:text-white hover:bg-teal-600">Glömt Lösenord?</button> */}
                             </div>
 
                             <div className=" float-right mt-4 mr-7">
@@ -163,13 +163,13 @@ export default function Login() {
 
                             </div>
                             <div>
-                                <a href={`http://localhost:1337/connect/discord`}>
+                                <a href={`http://localhost:1337/api/connect/discord`}>
                                     <button
                                         onClick={() => handleproviderlogin('discord')}
                                         className="items-center pl-2 pr-5 flex-none p-2 ml-7 mt-7 mr-7 border-2 rounded text-teal-600 border-teal-600 hover:text-white hover:bg-teal-600">Logga in med Discord
                                     </button>
                                 </a>
-                                <a href={`http://localhost:1337/connect/google`}>
+                                <a href={`http://localhost:1337/api/connect/google`}>
                                     <button
                                         onClick={() => handleproviderlogin('google')}
                                         className="items-center flex flex-row justify-center pl-2 pr-5 flex-none p-2 ml-7 mt-7 mr-7 border-2 rounded text-teal-600 border-teal-600 hover:text-white hover:bg-teal-600">Logga in med Google
