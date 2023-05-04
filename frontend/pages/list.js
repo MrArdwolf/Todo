@@ -136,7 +136,7 @@ export default function Home() {
             <div className="mb-4">
               <button id='logout_button' onClick={() => Router.push('/') + logOut()} className="flex-none float-right p-2 ml-2 mr-2 border-2 rounded text-teal-600 border-teal-600 hover:text-white hover:bg-teal-600">Logga Ut</button>
               <h1 className="flex-none float-right p-2 ml-2 mr-2">Hej {username}!</h1>
-              <h1 className="p-2 text-grey-darkest">Att Göra Lista</h1>
+              <h1 className="p-2 text-gray-950">Att Göra Lista</h1>
               <div className="flex mt-4">
                 <input
                   onKeyDown={(e) => {
@@ -149,7 +149,7 @@ export default function Home() {
                   value={newTodo}
                   id='text_input'
                   ref={inputText}
-                  className="shadow appearance-none border rounded w-full py-2 px-3 mr-2 text-grey-darker"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 mr-2 text-gray-900"
                   placeholder="Att göra"
                 />
                 <button id='ok_button' onClick={addObject} className="flex-none p-2 ml-2 mr-2 border-2 rounded text-teal-600 border-teal-600 hover:text-white hover:bg-teal-600">OK</button>

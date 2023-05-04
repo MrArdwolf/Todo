@@ -1,6 +1,50 @@
 # Backend
 ## Installera Stapi Och PostgreSQL
-1. 
+1. för att installera strapi och postgreSQL så ska man starta en terminal och köra:
+    ```
+    yarn create strapi-app backend --quickstart
+    ```
+2. byt sedan ut `backend/config/database.js` med:
+    ```js
+        // backend/config/database.js
+    module.exports = ({ env }) => ({
+      connection: {
+        client: 'postgres',
+        connection: {
+          host: env('DATABASE_HOST', 'localhost'),
+          port: env.int('DATABASE_PORT', 5432),
+          database: env('DATABASE_NAME', 'postgres'),
+          user: env('DATABASE_USERNAME', 'postgres'),
+          password: env('DATABASE_PASSWORD', 'test'),
+          schema: env('DATABASE_SCHEMA', 'public'), // Not required
+          ssl: false,
+        },
+        debug: false,
+      },
+    });
+    ```
+3. skapa en `docker-compose.yml` fil och klistra in:
+    ```yml
+    version: '3.1'
+
+    services:
+
+      db:
+        image: postgres
+        restart: always
+        environment:
+          POSTGRES_PASSWORD: 'test'
+        ports:
+          - 5432:5432
+    ```
+4. sedan kör man:
+    ```
+    docker-compose up
+    ```
+5. och i en annan terminal kör:
+    ```
+    yarn develop
+    ```
 
 ## skapa en collection type För Att Göra Lista
 1. starta strapi servern och logga in.

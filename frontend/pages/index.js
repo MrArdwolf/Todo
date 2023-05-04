@@ -92,12 +92,12 @@ export default function Login() {
                 <div className="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
                     <div className="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-3xl">
                         <div className="mb-4">
-                            <h1 className="p-2 text-grey-darkest">Att Göra Lista</h1>
+                            <h1 className="p-2 text-gray-950">Att Göra Lista</h1>
                             <div className="float-left mt-4 ml-7">
-                                <h1 className="text-grey-darkest">Logga In</h1>
+                                <h1 className="text-gray-950">Logga In</h1>
                                 <input
                                     type="tex"
-                                    className="shadow appearance-none border-2 rounded max-w-xl py-2 px-3 mr-2 mt-5 text-grey-darker"
+                                    className="shadow appearance-none border-2 rounded max-w-xl py-2 px-3 mr-2 mt-5 text-gray-900"
                                     placeholder="Användarnamn/Email"
                                     onChange={e => setUsername(e.target.value)}
                                     value={username}
@@ -111,7 +111,7 @@ export default function Login() {
                                 <br></br>
                                 <input
                                     type="password"
-                                    className="shadow appearance-none border-2 rounded max-w-xl py-2 px-3 mr-2 my-5 text-grey-darker"
+                                    className="shadow appearance-none border-2 rounded max-w-xl py-2 px-3 mr-2 my-5 text-gray-900"
                                     placeholder="Lösenord"
                                     onChange={e => setPassword(e.target.value)}
                                     value={password}
@@ -124,14 +124,14 @@ export default function Login() {
                                 />
                                 <br></br>
                                 <button id='login_button' onClick={() => handleLogin()} className="flex-none p-2 mr-7 border-2 rounded text-teal-600 border-teal-600 hover:text-white hover:bg-teal-600">Logga in</button>
-                                {/* <button id='resetPassword' onClick={() => handleLogin()} className="flex-none p-2 mr-7 border-2 rounded text-teal-600 border-teal-600 hover:text-white hover:bg-teal-600">Glömt Lösenord?</button> */}
+                                <button id='ForgottenPassword' onClick={() => Router.push('/ForgottenPassword')} className="flex-none p-2 mr-7 border-2 rounded text-teal-600 border-teal-600 hover:text-white hover:bg-teal-600">Glömt Lösenord?</button>
                             </div>
 
                             <div className=" float-right mt-4 mr-7">
-                                <h1 className="text-grey-darkest">Registrera</h1>
+                                <h1 className="text-gray-950">Registrera</h1>
                                 <input
                                     type="tex"
-                                    className="shadow appearance-none border-2 rounded max-w-xl py-2 px-3 mr-2 mt-5 text-grey-darker"
+                                    className="shadow appearance-none border-2 rounded max-w-xl py-2 px-3 mr-2 mt-5 text-gray-900"
                                     placeholder="Användarnamn"
                                     onChange={e => setRegUsername(e.target.value)}
                                     value={regUsername}
@@ -139,7 +139,7 @@ export default function Login() {
                                 <br></br>
                                 <input
                                     type="email"
-                                    className="shadow appearance-none border-2 rounded max-w-xl py-2 px-3 mr-2 my-5 text-grey-darker"
+                                    className="shadow appearance-none border-2 rounded max-w-xl py-2 px-3 mr-2 my-5 text-gray-900"
                                     placeholder="Email"
                                     onChange={e => setRegEmail(e.target.value)}
                                     value={regEmail}
@@ -148,7 +148,7 @@ export default function Login() {
                                 <br></br>
                                 <input
                                     type="password"
-                                    className="shadow appearance-none border-2 rounded max-w-xl py-2 px-3 mr-2 mb-5 text-grey-darker"
+                                    className="shadow appearance-none border-2 rounded max-w-xl py-2 px-3 mr-2 mb-5 text-gray-900"
                                     placeholder="Lösenord"
                                     onChange={e => setRegPassword(e.target.value)}
                                     value={regPassword}
@@ -163,13 +163,13 @@ export default function Login() {
 
                             </div>
                             <div>
-                                <a href={`http://localhost:1337/api/connect/discord`}>
+                                <a href={`${backendUrl}/api/connect/discord`}>
                                     <button
                                         onClick={() => handleproviderlogin('discord')}
                                         className="items-center pl-2 pr-5 flex-none p-2 ml-7 mt-7 mr-7 border-2 rounded text-teal-600 border-teal-600 hover:text-white hover:bg-teal-600">Logga in med Discord
                                     </button>
                                 </a>
-                                <a href={`http://localhost:1337/api/connect/google`}>
+                                <a href={`${backendUrl}/api/connect/google`}>
                                     <button
                                         onClick={() => handleproviderlogin('google')}
                                         className="items-center flex flex-row justify-center pl-2 pr-5 flex-none p-2 ml-7 mt-7 mr-7 border-2 rounded text-teal-600 border-teal-600 hover:text-white hover:bg-teal-600">Logga in med Google
