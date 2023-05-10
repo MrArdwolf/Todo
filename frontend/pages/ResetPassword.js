@@ -11,7 +11,7 @@ export default function ResetPassword() {
     const [confirmPassword, setconfirmPassword] = useState('')
     const [resetCode, setResetCode] = useState('')
 
-    let passwordReset = false
+    let passwordReset = false;
 
     useEffect(() => {
 
