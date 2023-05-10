@@ -28,7 +28,7 @@ export default function TodoItem(props) {
                 'Content-type': 'application/json; charset=UTF-8',
             },
             body: JSON.stringify({
-                data:{
+                data: {
                     Checked: !isChecked
                 }
             }),

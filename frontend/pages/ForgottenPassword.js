@@ -29,7 +29,7 @@ export default function ForgottenPassword() {
                 <div className="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
                     <div className="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-3xl">
                         <div className="mb-4">
-                            <h1 className="p-2 text-gray-950">Att Göra Lista</h1>
+                            <h1 className="p-2 text-gray-950 cursor-pointer	" onClick={() => Router.push('/')}>Att Göra Lista</h1>
                             <div className="float-left mt-4 ml-7 ">
                                 <h1 className="p-2 text-gray-950 object-top	">Glömt Lösenord?</h1>
 

@@ -36,7 +36,7 @@ export default function Login() {
                     console.error(`Couldn't login to Strapi. Status: ${error.response.status}`);
                     alert("Email eller Användarnamn används till ett anat konto")
                 }
-                else{
+                else {
                     console.error('An error occurred:', error.response);
                     alert("Ett fel uppstod!")
 
@@ -62,13 +62,13 @@ export default function Login() {
                 Router.push('/list');
             })
             .catch(error => {
-                
+
 
                 if (error.status !== 400) {
                     console.error(`Couldn't login to Strapi. Status: ${error.response.status}`);
                     alert("fel inloggningsuppgifter")
                 }
-                else{
+                else {
                     console.error('An error occurred:', error.response);
                     alert("Ett fel uppstod!")
 
@@ -92,7 +92,7 @@ export default function Login() {
                 <div className="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
                     <div className="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-3xl">
                         <div className="mb-4">
-                            <h1 className="p-2 text-gray-950">Att Göra Lista</h1>
+                            <h1 className="p-2 text-gray-950 cursor-pointer	" onClick={() => Router.push('/')}>Att Göra Lista</h1>
                             <div className="float-left mt-4 ml-7">
                                 <h1 className="text-gray-950">Logga In</h1>
                                 <input

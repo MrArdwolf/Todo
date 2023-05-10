@@ -49,7 +49,7 @@ export default function Home() {
           alert("Ett fel uppstod!")
         });
     } else {
-     Router.push('/');
+      Router.push('/');
     }
 
 
@@ -136,7 +136,7 @@ export default function Home() {
             <div className="mb-4">
               <button id='logout_button' onClick={() => Router.push('/') + logOut()} className="flex-none float-right p-2 ml-2 mr-2 border-2 rounded text-teal-600 border-teal-600 hover:text-white hover:bg-teal-600">Logga Ut</button>
               <h1 className="flex-none float-right p-2 ml-2 mr-2">Hej {username}!</h1>
-              <h1 className="p-2 text-gray-950">Att Göra Lista</h1>
+              <h1 className="p-2 text-gray-950 cursor-pointer	" onClick={() => Router.push('/')}>Att Göra Lista</h1>
               <div className="flex mt-4">
                 <input
                   onKeyDown={(e) => {
@@ -160,9 +160,9 @@ export default function Home() {
               <ul id='list'>
                 {Array.isArray(todos)
                   ? todos.map((todo) => {
-                  return <TodoItem key={todo.id} todo={todo} removeObject={removeObject} />
-                })
-              : null}
+                    return <TodoItem key={todo.id} todo={todo} removeObject={removeObject} />
+                  })
+                  : null}
               </ul>
               <div>
                 <button id='remove_all_button' onClick={removeAllObjects} className='flex p-3 mt-5 mr-auto ml-auto border-2 rounded text-red-600 border-red-600 hover:text-white hover:bg-red-600'>Ta Bort Alla</button>

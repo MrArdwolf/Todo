@@ -9,7 +9,7 @@ const LoginRedirect = (props) => {
   const provider = Cookies.get('provider', props);
 
   // const access_token = Cookies.get('access_token');
-  
+
 
   useEffect(() => {
 
