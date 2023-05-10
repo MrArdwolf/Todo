@@ -2,7 +2,6 @@ import TodoItem from '@/components/TodoItem'
 import React, { useState, useRef, useEffect } from 'react'
 import Router from 'next/router'
 import Cookies from 'js-cookie';
-import { array } from 'prop-types';
 
 const backendUrl = 'http://localhost:1337';
 
@@ -26,12 +25,10 @@ export default function Home() {
 
   // update häntar alla todos från databasen och lägger dem i en array.
   const update = () => {
-    console.log(userId)
 
     if (token != "") {
       const uri = `${backendUrl}/api/todos?filters[owner][id][$eq]=${userId}`;
       const encoded = encodeURI(uri);
-      console.log(encoded)
 
       fetch(encoded, {
         method: "GET",
@@ -113,7 +110,7 @@ export default function Home() {
 
   // RemoveAllObjects körs när man klickar på ta bort alla knappen och det kör en for loop på arrayn och säger till removeObject att ta bort alla.
   const removeAllObjects = () => {
-    if (confirm("Press a button!") == true) {
+    if (confirm("Är du säker på att du vill ta bort alla?") == true) {
       for (let i = 0; i < todos.length; i++) {
         let pos = todos[i].id;
         removeObject(todos[i]);

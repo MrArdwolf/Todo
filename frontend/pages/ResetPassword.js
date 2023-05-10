@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react'
 import Router from 'next/router'
 import axios from 'axios';
-import Cookies from 'js-cookie';
-
 const backendUrl = 'http://localhost:1337';
 
 export default function ResetPassword() {
@@ -22,10 +20,6 @@ export default function ResetPassword() {
 
     const setNewPassword = () => {
 
-        console.log(resetCode);
-        console.log(userNewPassword);
-        console.log(confirmPassword);
-
         axios
             .post(`${backendUrl}/api/auth/reset-password`, {
                 code: resetCode, // code contained in the reset link of step 3.
@@ -34,74 +28,51 @@ export default function ResetPassword() {
             })
             .then(response => {
                 console.log("Your user's password has been reset.");
-                passwordReset = true;
+                alert('Ditt Lösenord Har Ändrats');
+                Router.push('/');
             })
             .catch(error => {
                 console.log('An error occurred:', error.response);
             });
     }
 
-    if (passwordReset == false) {
-        return (
-            <>
-                <main>
-                    <div className="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
-                        <div className="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-3xl">
-                            <div className="mb-4">
-                                <h1 className="p-2 text-gray-950 cursor-pointer	" onClick={() => Router.push('/')}>Att Göra Lista</h1>
-                                <div className="float-left mt-4 ml-7 ">
-                                    <h1 className="p-2 text-gray-950 object-top	">Återställ Lösenord</h1>
+    return (
+        <>
+            <main>
+                <div className="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
+                    <div className="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-3xl">
+                        <div className="mb-4">
+                            <h1 className="p-2 text-gray-950 cursor-pointer	" onClick={() => Router.push('/')}>Att Göra Lista</h1>
+                            <div className="float-left mt-4 ml-7 ">
+                                <h1 className="p-2 text-gray-950 object-top	">Återställ Lösenord</h1>
 
-                                    <input
-                                        type="password"
-                                        className="shadow appearance-none border-2 rounded max-w-xl py-2 px-3 mr-2 mt-5 text-gray-900"
-                                        placeholder="Password"
-                                        onChange={e => setUserNewPassword(e.target.value)}
-                                        value={userNewPassword}
+                                <input
+                                    type="password"
+                                    className="shadow appearance-none border-2 rounded max-w-xl py-2 px-3 mr-2 mt-5 text-gray-900"
+                                    placeholder="Password"
+                                    onChange={e => setUserNewPassword(e.target.value)}
+                                    value={userNewPassword}
 
-                                    />
-                                    <input
-                                        type="password"
-                                        className="shadow appearance-none border-2 rounded max-w-xl py-2 px-3 mr-2 mt-5 text-gray-900"
-                                        placeholder="Confirm Password"
-                                        onChange={e => setconfirmPassword(e.target.value)}
-                                        value={confirmPassword}
-                                        onKeyDown={(e) => {
-                                            if (e.key === "Enter") {
-                                                setNewPassword();
-                                            }
-                                        }}
+                                />
+                                <input
+                                    type="password"
+                                    className="shadow appearance-none border-2 rounded max-w-xl py-2 px-3 mr-2 mt-5 text-gray-900"
+                                    placeholder="Confirm Password"
+                                    onChange={e => setconfirmPassword(e.target.value)}
+                                    value={confirmPassword}
+                                    onKeyDown={(e) => {
+                                        if (e.key === "Enter") {
+                                            setNewPassword();
+                                        }
+                                    }}
 
-                                    />
-                                    <button id='login_button' onClick={() => setNewPassword()} className="flex-none p-2 mr-7 border-2 rounded text-teal-600 border-teal-600 hover:text-white hover:bg-teal-600">Återställ</button>
-                                </div>
+                                />
+                                <button id='login_button' onClick={() => setNewPassword()} className="flex-none p-2 mr-7 border-2 rounded text-teal-600 border-teal-600 hover:text-white hover:bg-teal-600">Återställ</button>
                             </div>
                         </div>
                     </div>
-                </main>
-            </>
-        )
-    }
-
-    if (passwordReset == true) {
-        return (
-            <>
-                <main>
-                    <div className="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
-                        <div className="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-3xl">
-                            <div className="mb-4">
-                                <h1 className="p-2 text-gray-950">Att Göra Lista</h1>
-                                <div className="float-left mt-4 ml-7 ">
-                                    <h1 className="p-2 text-gray-950 object-top	">Ditt Lösenord har Återställts</h1>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </main>
-            </>
-        )
-    }
-
-
-
+                </div>
+            </main>
+        </>
+    )
 }
