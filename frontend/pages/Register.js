@@ -88,13 +88,13 @@ export default function Login() {
                                 <a href={`${backendUrl}/api/connect/discord`}>
                                     <button
                                         onClick={() => handleproviderlogin('discord')}
-                                        className="items-center pl-2 pr-5 flex-none p-2 ml-x mb-2 mt-4 border-2 rounded text-teal-600 border-teal-600 hover:text-white hover:bg-teal-600">Fortsätt med Discord
+                                        className="items-center px-5 flex-none py-2 ml-x mb-2 mt-4 border-2 rounded text-teal-600 border-teal-600 hover:text-white hover:bg-teal-600">Fortsätt med Discord
                                     </button>
                                 </a>
                                 <a href={`${backendUrl}/api/connect/google`}>
                                     <button
                                         onClick={() => handleproviderlogin('google')}
-                                        className="items-center flex flex-row justify-center pl-2 pr-5 flex-none p-2 ml-x mt-2 border-2 rounded text-teal-600 border-teal-600 hover:text-white hover:bg-teal-600">Fortsätt med Google
+                                        className="items-center flex flex-row justify-center px-5 flex-none py-2 ml-x mt-2 border-2 rounded text-teal-600 border-teal-600 hover:text-white hover:bg-teal-600">Fortsätt med Google
                                     </button>
                                 </a>
                             </div>

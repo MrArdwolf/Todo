@@ -128,7 +128,7 @@ export default function Login() {
 
                                     />
                                     <div className='flex justify-center'>
-                                        <button id='login_button' onClick={() => handleLogin()} className="flex-none p-2 mr-2 border-2 rounded text-teal-600 border-teal-600 hover:text-white hover:bg-teal-600">Logga in</button>
+                                        <button id='login_button' onClick={() => handleLogin()} className="flex-none p-2 border-2 rounded text-teal-600 border-teal-600 hover:text-white hover:bg-teal-600">Logga in</button>
                                     </div>
                                 </div>
 
@@ -138,13 +138,13 @@ export default function Login() {
                                     <a href={`${backendUrl}/api/connect/discord`}>
                                         <button
                                             onClick={() => handleproviderlogin('discord')}
-                                            className="items-center pl-2 pr-5 flex-none p-2 ml-x mb-2 mt-4 border-2 rounded text-teal-600 border-teal-600 hover:text-white hover:bg-teal-600">Fortsätt med Discord
+                                            className="items-center px-5 flex-none py-2 ml-x mb-2 mt-4 border-2 rounded text-teal-600 border-teal-600 hover:text-white hover:bg-teal-600">Fortsätt med Discord
                                         </button>
                                     </a>
                                     <a href={`${backendUrl}/api/connect/google`}>
                                         <button
                                             onClick={() => handleproviderlogin('google')}
-                                            className="items-center flex flex-row justify-center pl-2 pr-5 flex-none p-2 ml-x mt-2 border-2 rounded text-teal-600 border-teal-600 hover:text-white hover:bg-teal-600">Fortsätt med Google
+                                            className="items-center flex flex-row justify-center px-5 flex-none py-2 ml-x mt-2 border-2 rounded text-teal-600 border-teal-600 hover:text-white hover:bg-teal-600">Fortsätt med Google
                                         </button>
                                     </a>
                                     <a id='ForgottenPassword' onClick={() => Router.push('/ForgottenPassword')} className="flex-none mt-3 p-2 rounded text-gray-950 cursor-pointer font-light">Glömt Lösenord?</a>
